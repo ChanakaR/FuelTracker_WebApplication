@@ -1,0 +1,12 @@
+/*!
+ *  styles for modals
+!*/
+
+.info-dialog p{
+    background-color: #eafaed;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
