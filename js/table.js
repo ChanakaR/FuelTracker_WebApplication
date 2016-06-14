@@ -105,9 +105,9 @@ function removeVehicle(){
 }
 
 function viewStat(caller){
+
+    var json_string="";
     if(caller == 'vehicle'){
-        var e_btn = document.getElementsByClassName("view-stat");
-        e_btn[0].setAttribute("data-target","#vehicle-stat");
 
         var selected_row = document.getElementsByClassName("selectedd");
         var td_elements = selected_row[0].getElementsByTagName("td");
@@ -119,8 +119,39 @@ function viewStat(caller){
         var year =  td_elements[4].innerHTML;
         var ftype =  td_elements[5].innerHTML;
 
+        var v_id = selected_row.item('tr').id;
+
+        var url = "http://localhost/FTApplicationServer/requestHandler.php?method=vehicle-stat&vehicle_id="+v_id;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+
+                var jo = JSON.parse(xhttp.responseText);
+                var stat = "<b>Last trip</b> <br> distance : " + jo["ls_t_length"]+"km<br>date : "+ jo["ls_t_date"]+"<br>description :"+ jo["ls_t_description"]+"<br>-------------------";
+                stat += "<br><b>Longest trip</b> <br> distance : " + jo["lg_t_length"]+"km<br>date : "+ jo["lg_t_date"]+"<br>description :"+ jo["lg_t_description"]+"<br>-------------------";
+                stat += "<br><b>Shortest trip</b> <br> distance : " + jo["sh_t_length"]+"km<br>date : "+ jo["sh_t_date"]+"<br>description :"+ jo["sh_t_description"];
+
+                var b_d_fc = "Favourite driver : " + jo["fav_driver"] + "<br> Best fuel consumption : "+jo["best_fuel_consumption"]+" kilometers per liter";
+
+                document.getElementById("vehicle_stat_stat").innerHTML = stat;
+                document.getElementById("best-driver-fc").innerHTML = b_d_fc;
+            }
+        };
+        xhttp.open("GET",url,true);
+        xhttp.send();
+
+        var e_btn = document.getElementsByClassName("view-stat");
+        e_btn[0].setAttribute("data-target","#vehicle-stat");
+
+
+
         var p = document.getElementById("vehicle-summary");
         p.innerHTML = "Class : "+v_class+"<br>Licence plate : "+lplate+"<br>Make : "+make+"<br>Model : "+model+"<br>Year : "+year+"<br>Fuel type : "+ftype;
+
+
+
+
     }
     else if(caller == 'driver'){
         alert("you are from driver");

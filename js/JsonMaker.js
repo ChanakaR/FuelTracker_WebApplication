@@ -9,7 +9,9 @@
  * create driver details json string
  * inputs get from the driver insert form
  */
-function createDriverJsonHome() {
+function createDriverJson() {
+    var path = window.location.pathname;
+
     var f_name = document.getElementsByName("d_fname")[0].value;
     var l_name = document.getElementsByName("d_lname")[0].value;
     var address = document.getElementsByName("d_address")[0].value;
@@ -28,40 +30,24 @@ function createDriverJsonHome() {
                         '"driver_id":"'+driver_id+'",'+
                         '"licence_no":"'+licence_no+'"}';
 
-    window.location.href ="../view/home.php?driver-json="+json_string;
-
-}
-
-function createDriverJsonDriver(){
-    var f_name = document.getElementsByName("d_fname")[0].value;
-    var l_name = document.getElementsByName("d_lname")[0].value;
-    var address = document.getElementsByName("d_address")[0].value;
-    var contact_no = document.getElementsByName("d_contact_no")[0].value;
-    var gender = document.getElementsByName("d_gender")[0].value;
-    var nic = document.getElementsByName("d_nic")[0].value;
-    var driver_id = document.getElementsByName("d_driver_id")[0].value;
-    var licence_no = document.getElementsByName("d_licence_no")[0].value;
-
-    var json_string ='{ "first_name":"'+f_name+'",'+
-        '"last_name":"'+l_name+'",'+
-        '"address":"'+address+'",'+
-        '"contact_no":"'+contact_no+'",'+
-        '"gender":"'+gender+'",'+
-        '"nic":"'+nic+'",'+
-        '"driver_id":"'+driver_id+'",'+
-        '"licence_no":"'+licence_no+'"}';
-
-    window.location.href ="../view/driver.php?driver-json="+json_string;
-
+    if(path.indexOf("home")>-1){
+        window.location.href ="../view/home.php?driver-json="+json_string;
+    }
+    else if(path.indexOf("driver")>-1){
+        window.location.href ="../view/driver.php?driver-json="+json_string;
+    }
 }
 
 
 /*
  * create vehicle details json string
  * inputs get from the vehicle insert form
+ * this function call from two different locations , from home and from vehicle
  *
  */
-function createVehicleJsonHome(){
+function createVehicleJson(){
+
+    var path = window.location.pathname;
 
     var v_class = document.getElementsByName('v_class')[0].value;
     var make = document.getElementsByName('v_make')[0].value;
@@ -77,10 +63,15 @@ function createVehicleJsonHome(){
         '"lplate":"'+lplate+'",'+
         '"ftype":"'+ftype+'"}';
 
-    window.location.href ="../view/home.php?vehicle-json="+json_string;
+    if(path.indexOf("vehicle")>-1){
+        window.location.href ="../view/vehicle.php?vehicle-json="+json_string;
+    }
+    else if(path.indexOf("home")>-1){
+        window.location.href ="../view/home.php?vehicle-json="+json_string;
+    }
 }
 
-function createVehicleJsonVehicle(){
+/*function createVehicleJsonVehicle(){
 
     var v_class = document.getElementsByName('v_class')[0].value;
     var make = document.getElementsByName('v_make')[0].value;
@@ -96,8 +87,8 @@ function createVehicleJsonVehicle(){
         '"lplate":"'+lplate+'",'+
         '"ftype":"'+ftype+'"}';
 
-    window.location.href ="../view/vehicle.php?vehicle-json="+json_string;
-}
+
+}*/
 
 function createVehicleEditJsonVehicle(){
     var v_class = document.getElementById('e_v_class').value;
@@ -122,4 +113,32 @@ function createVehicleDeleteJson(){
     var v_id = document.getElementById("d_v_id").value;
     var json_string = '{"v_id":"'+v_id+'"}';
     window.location.href ="../view/vehicle.php?vehicle-delete-json="+json_string;
+}
+
+function createOfficerJson(){
+
+    var path = window.location.pathname;
+
+    var f_name = document.getElementsByName("o_fname")[0].value;
+    var l_name = document.getElementsByName("o_lname")[0].value;
+    var address = document.getElementsByName("o_address")[0].value;
+    var contact_no = document.getElementsByName("o_contact_no")[0].value;
+    var gender = document.getElementsByName("o_gender")[0].value;
+    var nic = document.getElementsByName("o_nic")[0].value;
+    var driver_id = document.getElementsByName("o_officer_id")[0].value;
+
+    var json_string ='{ "first_name":"'+f_name+'",'+
+        '"last_name":"'+l_name+'",'+
+        '"address":"'+address+'",'+
+        '"contact_no":"'+contact_no+'",'+
+        '"gender":"'+gender+'",'+
+        '"nic":"'+nic+'",'+
+        '"officer_id":"'+driver_id+'"}';
+
+    if(path.indexOf("home")>-1){
+        window.location.href ="../view/home.php?officer-json="+json_string;
+    }
+    else if(path.indexOf("officer")>-1){
+        window.location.href ="../view/officer.php?officer-json="+json_string
+    }
 }

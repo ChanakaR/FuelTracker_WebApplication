@@ -3,10 +3,9 @@
 /**
  * Created by PhpStorm.
  * User: bmCSoft
- * Date: 2016-04-30
- * Time: 10:24 AM
+ * Date: 2016-05-21
+ * Time: 9:40 AM
  */
-
 class DataAccess
 {
     private $url = "http://localhost/FTApplicationServer/requestHandler.php";
@@ -36,7 +35,6 @@ class DataAccess
         $response_array =  json_decode($response,true);
         return $response_array['message'];
     }
-
     /*
      * queryData - select data from multiple table
      */
@@ -52,7 +50,7 @@ class DataAccess
         $response = curl_exec($this->curl);
         curl_close($this->curl);
 
-        echo $response;
+        return $response;
     }
 
     /*
@@ -85,5 +83,4 @@ class DataAccess
                 'Content-Length: ' . strlen($json))
         );
     }
-
 }

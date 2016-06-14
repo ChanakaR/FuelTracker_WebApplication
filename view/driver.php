@@ -6,8 +6,8 @@
  * Time: 12:51 PM
  */
 
-require_once ("./autoload.php");
-require_once ("../modal/DataAccess.php");
+require_once ("../classes/view/AutoLoader.php");
+require_once ("../classes/data_access/DataAccess.php");
 
 if(isset($_GET["vehicle-json"])){
     $json_data = $_GET["vehicle-json"];
@@ -131,7 +131,7 @@ function myBody(){
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="save-driver" onclick="createDriverJsonDriver()">Save changes</button>
+                    <button type="submit" class="btn btn-primary" id="save-driver" onclick="createDriverJson()">Save changes</button>
                   </div>
                 </div>
 
@@ -161,19 +161,21 @@ function getTableBody(){
     $table_body='';
     foreach($data_receive as $item){
         $table_body .= '<tr id ="'.$item["id"].'" >
-      <td>'.$item['driver_id'].'</td>
-      <td>'.$item['f_name'].'</td>
-      <td>'.$item['address'].'</td>
-      <td>'.$item['contact_no'].'</td>
-      <td>'.$item['gender'].'</td>
-      <td>'.$item['nic'].'</td>
-      <td>'.$item['driving_licence_no'].'</td>
-      <td><button class="btn btn-sm btn-default disabled" data-toggle="modal" ><icon class="fa fa-eye"></icon> view stats</button></td>
-    </tr>';
+                          <td>'.$item['driver_id'].'</td>
+                          <td>'.$item['f_name'].'</td>
+                          <td>'.$item['address'].'</td>
+                          <td>'.$item['contact_no'].'</td>
+                          <td>'.$item['gender'].'</td>
+                          <td>'.$item['nic'].'</td>
+                          <td>'.$item['driving_licence_no'].'</td>
+                          <td><button class="btn btn-sm btn-default disabled" data-toggle="modal" ><icon class="fa fa-eye"></icon> view stats</button></td>
+                        </tr>';
     }
     return $table_body;
 }
-load_header();
-load_sidebar('driver');
+
+$auto_loader = new AutoLoader();
+$auto_loader->load_header();
+$auto_loader->load_sidebar("driver");
 myBody();
-load_footer_tables();
+$auto_loader->load_footer_tables();

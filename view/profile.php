@@ -6,7 +6,7 @@
  * Time: 6:04 PM
  */
 
-require_once ("./autoload.php");
+require_once ("../classes/view/AutoLoader.php");
 
 function myBody(){
     echo '<div class="content-wrapper">
@@ -385,7 +385,9 @@ function myBody(){
   </div>';
 }
 
-load_header();
-load_sidebar("profile");
+$auto_loader = new AutoLoader();
+$auto_loader->load_header();
+$auto_loader->load_sidebar("profile");
 myBody();
-load_footer();
+$auto_loader->load_footer();
+

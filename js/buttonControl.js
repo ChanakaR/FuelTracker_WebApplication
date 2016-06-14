@@ -8,6 +8,17 @@ function showVStatInDetail(){
     openURL(url);
 }
 
+function showAvailableVehicles(){
+
+    var url = "../controller/controller.php?path=av_vehicle";
+    openURL(url);
+}
+
+function showAvailableDrivers(){
+    var url = "../controller/controller.php?path=av_driver";
+    openURL(url);
+}
+
 function openURL(url){
     var win = window.open(url, '_blank');
     win.focus();

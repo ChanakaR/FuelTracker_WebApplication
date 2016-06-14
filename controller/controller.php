@@ -26,4 +26,18 @@ if($_GET['path']=='profile'){
     header("Location: ../view/profile.php");
 }
 
+if($_GET['path']=='av_vehicle'){
+    header("Location: ../view/available_vehicles.php");
+}
 
+if($_GET['path']=='av_driver'){
+    header("Location: ../view/available_drivers.php");
+}
+
+if($_GET['path']=='officer'){
+    header("Location: ../view/Officer.php");
+}
+
+if($_GET['path']=='trip'){
+    header("Location: ../view/trip.php");
+}

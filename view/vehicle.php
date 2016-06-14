@@ -6,8 +6,8 @@
  * Time: 6:53 PM
  */
 
-require_once ("./autoload.php");
-require_once ("../modal/DataAccess.php");
+require_once ("../classes/view/AutoLoader.php");
+require_once ("../classes/data_access/DataAccess.php");
 
 if(isset($_GET["vehicle-json"])){
     $json_data = $_GET["vehicle-json"];
@@ -151,7 +151,7 @@ function myBody(){
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="createVehicleJsonVehicle()">Save</button>
+                <button type="button" class="btn btn-primary" onclick="createVehicleJson()">Save</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -260,13 +260,12 @@ function myBody(){
                     <div class="col-sm-4">
                         <img src="../dist/img/car.jpeg" alt="Vehicle Image" style="height: 150px;width: 150px; border:5px solid #a3d0ef;">
                     </div>
+
                     <div class="col-sm-8 info-dialog">
                         <p id="vehicle-summary">
-
                         </p>
-                        <p>
-                        Best driver : Chanaka<br>
-                        Best fuel consumption : 7 ltr/km
+                        <p id = "best-driver-fc">
+
                         </p>
                     </div>
                 </div>
@@ -277,8 +276,6 @@ function myBody(){
                       <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                           <li class="active"><a href="#stats" data-toggle="tab">Stats</a></li>
-                          <li><a href="#drivers" data-toggle="tab">Drivers</a></li>
-                          <li><a href="#trips" data-toggle="tab">Trips</a></li>
                         </ul>
                         <div class="tab-content">
                           <div class="active tab-pane" id="stats">
@@ -288,76 +285,16 @@ function myBody(){
                               <li>
                                 <i class="fa  fa-bar-chart bg-green"></i>
                                 <div class="timeline-item">
-                                  <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                                  <span class="time"><a class="btn btn-success btn-xs" onclick="showVStatInDetail();">show in detail</a></span>
 
-                                  <h3 class="timeline-header"><a href="#">Stats</a> -vehicle name</h3>
+                                  <h3 class="timeline-header"><a href="#">Trip Summary</a></h3>
 
-                                  <div class="timeline-body">
-                                    Stat details goes here...<br>
-                                    some text...some text...some text...some text...some text...some text...some text...
-                                    some text...some text...some text...some text...some text...some text...some text...
+                                  <div class="timeline-body" id="vehicle_stat_stat">
+
                                    </div>
-                                  <div class="timeline-footer">
-                                    <a class="btn btn-success btn-xs" onclick="showVStatInDetail();">show in detail</a>
-                                  </div>
                                 </div>
                               </li>
                               <!-- END timeline item -->
-
-                            </ul>
-
-                          </div>
-                          <!-- /.tab-pane -->
-                          <div class="tab-pane" id="drivers">
-                            <!-- The timeline -->
-                            <ul class="timeline timeline-inverse">
-
-                              <!-- timeline item -->
-                              <li>
-                                <i class="fa fa-user bg-blue"></i>
-                                <div class="timeline-item">
-                                  <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                                  <h3 class="timeline-header"><a href="#">Drivers</a> - vehicle name</h3>
-
-                                  <div class="timeline-body">
-                                    Details of drivers who used the vehicle...<br>
-                                    some text...some text...some text...some text...some text...some text...some text...
-                                    some text...some text...some text...some text...some text...some text...some text...
-                                  </div>
-                                  <div class="timeline-footer">
-                                    <a class="btn btn-primary btn-xs">more about drivers</a>
-                                  </div>
-                                </div>
-                              </li>
-                              <!-- END timeline item -->
-
-                            </ul>
-
-                          </div>
-                          <!-- /.tab-pane -->
-
-                          <div class="tab-pane" id="trips">
-                            <ul class="timeline timeline-inverse">
-
-                              <!-- timeline item -->
-                              <li>
-                                <i class="fa  fa-random bg-orange"></i>
-                                <div class="timeline-item">
-                                  <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                                  <h3 class="timeline-header"><a href="#">Trip</a> - vehicle name</h3>
-
-                                  <div class="timeline-body">
-                                    Trip details goes here...<br>
-                                    some text...some text...some text...some text...some text...some text...some text...
-                                    some text...some text...some text...some text...some text...some text...some text...
-                                  </div>
-
-                                </div>
-                              </li>
-                              <!-- END timeline item -->
-
                             </ul>
                           </div>
                           <!-- /.tab-pane -->
@@ -381,7 +318,6 @@ function myBody(){
     </section>
     <!-- /.content -->
   </div>';
-
     echo $content;
 }
 
@@ -409,7 +345,8 @@ function getTableBody(){
     return $table_body;
 }
 
-load_header();
-load_sidebar('vehicle');
+$auto_loader = new AutoLoader();
+$auto_loader->load_header();
+$auto_loader->load_sidebar('vehicle');
 myBody();
-load_footer_tables();
+$auto_loader->load_footer_tables();

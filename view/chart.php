@@ -6,7 +6,7 @@
  * Time: 8:27 PM
  */
 
-require_once ("autoload.php");
+require_once ("../classes/view/AutoLoader.php");
 
 function myBody(){
     echo '<div class="content-wrapper">
@@ -122,7 +122,8 @@ function myBody(){
   </div>';
 }
 
-load_header();
-load_sidebar("chart");
+$auto_loader = new AutoLoader();
+$auto_loader->load_header();
+$auto_loader->load_sidebar("chart");
 myBody();
-load_footer_charts();
+$auto_loader->load_footer_charts();
