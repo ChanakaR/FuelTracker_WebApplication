@@ -31,7 +31,6 @@ class DataAccess
         $this->generateRequest($json,"POST");
         $response = curl_exec($this->curl);
         curl_close($this->curl);
-
         $response_array =  json_decode($response,true);
         return $response_array['message'];
     }

@@ -169,7 +169,6 @@ class AutoLoader
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
                                         <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=chart"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
                                         <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
                                         <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
@@ -178,7 +177,6 @@ class AutoLoader
                                         <li class="active"><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
                                         <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=chart"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
                                         <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
                                         <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
@@ -187,26 +185,14 @@ class AutoLoader
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li class="active"><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
                                         <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=chart"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
                                         <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
                                         <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
-                            case 'chart':
-                                $list ='<li ><a href="../controller/controller.php?path=home"><i class="fa fa-bank"></i> <span>Home</span></a></li>
-                                        <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
-                                        <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li class="active"><a href="../controller/controller.php?path=chart"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
-                                        <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
-                                        <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
-                                break;
-
                             case 'officer':
                                 $list ='<li ><a href="../controller/controller.php?path=home"><i class="fa fa-bank"></i> <span>Home</span></a></li>
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
                                         <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=chart"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
                                         <li class="active"><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
                                         <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
@@ -216,7 +202,6 @@ class AutoLoader
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
                                         <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=chart"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
                                         <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
                                         <li class = "active"><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
@@ -226,7 +211,6 @@ class AutoLoader
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
                                         <li class = "active"><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=chart"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
                                         <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
                                         <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
@@ -287,6 +271,11 @@ class AutoLoader
                 <script src="../bootstrap/js/bootstrap.min.js"></script>
                 <!-- ChartJS 1.0.1 -->
                 <script src="../plugins/chartjs/Chart.min.js"></script>
+                <!-- DataTables -->
+                <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+                <!-- SlimScroll -->
+                <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
                 <!-- FastClick -->
                 <script src="../plugins/fastclick/fastclick.js"></script>
                 <!-- AdminLTE App -->
@@ -295,7 +284,10 @@ class AutoLoader
                 <script src="../dist/js/demo.js"></script>
                 <!-- page script -->
                 <script src="../js/chart.js"></script>
+                <!-- table script -->
                 <script src="../js/buttonControl.js"></script>
+                <script src="../js/table.js"></script>
+                <script src="../js/JsonMaker.js"></script>
                 </body>
                 </html>';
     }

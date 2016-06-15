@@ -56,9 +56,6 @@ class Trip extends AutoLoader
                       </div>-->
                       <div class="row">
                       <div class="option-bar" style="margin: 10px;float: right;">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#add-driver"><icon class="fa fa-plus-square-o"></icon> Add</button>
-                        <button class="btn btn-primary" id="edit-driver" data-toggle="modal" onclick=""><icon class="fa fa-edit"></icon> Edit</button>
-                        <button class="btn btn-danger" id="remove-driver" data-toggle="modal" onclick=""><icon class="fa fa-minus-square-o"></icon> Remove</button>
                       </div>
                       </div>
                       <div class="row">
@@ -107,38 +104,7 @@ class Trip extends AutoLoader
                         <!-- /.col -->
                         </div>
 
-                        <div class="modal fade" id="add-driver">
-                          <div class="modal-dialog">
 
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Add Driver</h4>
-                                  </div>
-                                  <div class="modal-body">
-                                    <input class="form-control" type="text" placeholder="First Name" name="d_fname"><br>
-                                    <input class="form-control" type="text" placeholder="Last Name" name="d_lname"><br>
-                                    <input class="form-control" type="text" placeholder="Address" name="d_address"><br>
-                                    <input class="form-control" type="text" placeholder="Contact Number" name="d_contact_no"><br>
-                                    Gender:<select class="form-control" name="d_gender">
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                    </select><br>
-                                    <input class="form-control" type="text" placeholder="Nic" name="d_nic"><br>
-                                    <input class="form-control" type="text" placeholder="Driver Id" name="d_driver_id"><br>
-                                    <input class="form-control" type="text" placeholder="Driving Licence Number" name="d_licence_no">
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" id="save-driver" onclick="createDriverJson()">Save changes</button>
-                                  </div>
-                                </div>
-
-                            <!-- /.modal-content -->
-                          </div>
-                          <!-- /.modal-dialog -->
-                        </div>
                         <!-- /.modal -->
 
                     </section>

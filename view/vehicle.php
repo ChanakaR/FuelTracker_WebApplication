@@ -80,6 +80,8 @@ function myBody(){
       </div>-->
       <div class="row">
       <div class="option-bar" style="margin: 10px;float: right;">
+        <input type="hidden" id="selected-row-id">
+        <input type="hidden" id="selected-vehicle-stat-summary">
         <button class="btn btn-success" data-toggle="modal" data-target="#add-vehicle"><icon class="fa fa-plus-square-o"></icon> Add</button>
         <button class="btn btn-primary" id="edit-vehicle" data-toggle="modal" onclick="editVehicle()"><icon class="fa fa-edit"></icon> Edit</button>
         <button class="btn btn-danger" id="remove-vehicle" data-toggle="modal" onclick="removeVehicle()"><icon class="fa fa-minus-square-o"></icon> Remove</button>

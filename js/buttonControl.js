@@ -4,7 +4,9 @@
 
 
 function showVStatInDetail(){
-    var url = "../controller/controller.php?path=chart";
+    var v_id = document.getElementById("selected-row-id").val;
+    var v_summary = document.getElementById("selected-vehicle-stat-summary").val;
+    var url = "../controller/controller.php?path=stat&id="+v_id+"&"+v_summary;
     openURL(url);
 }
 

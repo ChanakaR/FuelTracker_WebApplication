@@ -18,8 +18,9 @@ if($_GET['path']=='vehicle'){
 }
 
 // request for charts - redirect to chart.php
-if($_GET['path']=='chart'){
-    header("Location: ../view/chart.php");
+if($_GET['path']=='stat'){
+    $ur = 'Location: ../view/stat_viewer.php?id='.$_GET["id"].'&vehicle='.$_GET["vehicle"].'&fd='.$_GET["fd"].'&bfc='.$_GET["bfc"];
+    header($ur);
 }
 
 if($_GET['path']=='profile'){
