@@ -59,25 +59,6 @@ function myBody(){
 
     <!-- Main content -->
     <section class="content">
-      <!--<div class="row">
-        <div class="col-md-12">
-          <div class="box box-primary box-solid">
-            <div class="box-header">
-              <h3 class="box-title">Connecting...</h3>
-            </div>
-            <div class="box-body">
-              this may take few seconds.
-            </div>
-            <!-- /.box-body -->
-            <!-- Loading (remove the following to stop the loading)->
-            <div class="overlay">
-              <i class="fa fa-refresh fa-spin"></i>
-            </div>
-            <!-- end loading ->
-          </div>
-          <!-- /.box ->
-        </div>
-      </div>-->
       <div class="row">
       <div class="option-bar" style="margin: 10px;float: right;">
         <input type="hidden" id="selected-row-id">

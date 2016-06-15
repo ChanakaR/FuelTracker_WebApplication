@@ -46,30 +46,12 @@ class Officer extends AutoLoader
 
                     <!-- Main content -->
                     <section class="content">
-                      <!--<div class="row">
-                        <div class="col-md-12">
-                          <div class="box box-primary box-solid">
-                            <div class="box-header">
-                              <h3 class="box-title">Connecting...</h3>
-                            </div>
-                            <div class="box-body">
-                              this may take few seconds.
-                            </div>
-                            <!-- /.box-body -->
-                            <!-- Loading (remove the following to stop the loading)->
-                            <div class="overlay">
-                              <i class="fa fa-refresh fa-spin"></i>
-                            </div>
-                            <!-- end loading ->
-                          </div>
-                          <!-- /.box ->
-                        </div>
-                      </div>-->
+
                       <div class="row">
                       <div class="option-bar" style="margin: 10px;float: right;">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#add-driver"><icon class="fa fa-plus-square-o"></icon> Add</button>
-                        <button class="btn btn-primary" id="edit-driver" data-toggle="modal" onclick=""><icon class="fa fa-edit"></icon> Edit</button>
-                        <button class="btn btn-danger" id="remove-driver" data-toggle="modal" onclick=""><icon class="fa fa-minus-square-o"></icon> Remove</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#add-officer"><icon class="fa fa-plus-square-o"></icon> Add</button>
+                        <button class="btn btn-primary" id="edit-officer" data-toggle="modal" onclick="editOfficer()"><icon class="fa fa-edit"></icon> Edit</button>
+                        <button class="btn btn-danger" id="remove-officer" data-toggle="modal" onclick=""><icon class="fa fa-minus-square-o"></icon> Remove</button>
                       </div>
                       </div>
                       <div class="row">
@@ -84,6 +66,7 @@ class Officer extends AutoLoader
                                 <tr class="selected">
                                   <th>Officer Id</th>
                                   <th>First name</th>
+                                  <th>Last name</th>
                                   <th>Address</th>
                                   <th>Contact No</th>
                                   <th>Gender</th>
@@ -99,6 +82,7 @@ class Officer extends AutoLoader
                                 <tr>
                                   <th>Officer Id</th>
                                   <th>First name</th>
+                                  <th>Last name</th>
                                   <th>Address</th>
                                   <th>Contact No</th>
                                   <th>Gender</th>
@@ -114,31 +98,31 @@ class Officer extends AutoLoader
                         <!-- /.col -->
                         </div>
 
-                        <div class="modal fade" id="add-driver">
+                        <!-- ADD OFFICER -->
+                        <div class="modal fade" id="add-officer">
                           <div class="modal-dialog">
 
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Add Driver</h4>
+                                    <h4 class="modal-title">Add Officer</h4>
                                   </div>
                                   <div class="modal-body">
-                                    <input class="form-control" type="text" placeholder="First Name" name="d_fname"><br>
-                                    <input class="form-control" type="text" placeholder="Last Name" name="d_lname"><br>
-                                    <input class="form-control" type="text" placeholder="Address" name="d_address"><br>
-                                    <input class="form-control" type="text" placeholder="Contact Number" name="d_contact_no"><br>
-                                    Gender:<select class="form-control" name="d_gender">
+                                    <input class="form-control" type="text" placeholder="First Name" name="o_fname"><br>
+                                    <input class="form-control" type="text" placeholder="Last Name" name="o_lname"><br>
+                                    <input class="form-control" type="text" placeholder="Address" name="o_address"><br>
+                                    <input class="form-control" type="text" placeholder="Contact Number" name="o_contact_no"><br>
+                                    Gender:<select class="form-control" name="o_gender">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select><br>
-                                    <input class="form-control" type="text" placeholder="Nic" name="d_nic"><br>
-                                    <input class="form-control" type="text" placeholder="Driver Id" name="d_driver_id"><br>
-                                    <input class="form-control" type="text" placeholder="Driving Licence Number" name="d_licence_no">
+                                    <input class="form-control" type="text" placeholder="Nic" name="o_nic"><br>
+                                    <input class="form-control" type="text" placeholder="Officer Id" name="o_officer_id"><br>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" id="save-driver" onclick="createDriverJson()">Save changes</button>
+                                    <button type="submit" class="btn btn-primary" id="save-driver" onclick="createOfficerJson()">Save changes</button>
                                   </div>
                                 </div>
 
@@ -147,6 +131,59 @@ class Officer extends AutoLoader
                           <!-- /.modal-dialog -->
                         </div>
                         <!-- /.modal -->
+
+                        <!-- EDIT OFFICER -->
+                        <div class="modal fade" id="edit-officer-modal">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Edit Vehicle</h4>
+                              </div>
+                              <div class="modal-body">
+                                <input class="form-control" type="text" placeholder="First Name" id="e_o_fname"><br>
+                                <input class="form-control" type="text" placeholder="Last Name" id="e_o_lname"><br>
+                                <input class="form-control" type="text" placeholder="Address" id="e_o_address"><br>
+                                <input class="form-control" type="text" placeholder="Contact Number" id="e_o_contact_no"><br>
+                                <input type="hidden" id="o_id" value="">
+                                Gender:<select class="form-control" id="e_o_gender">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select><br>
+                                <input class="form-control" type="text" placeholder="Nic" id="e_o_nic"><br>
+                                <input class="form-control" type="text" placeholder="Officer Id" id="e_o_officer_id"><br>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="createOfficerEditJson();">Save changes</button>
+                              </div>
+                            </div>
+                            <!-- /.modal-content -->
+                          </div>
+                          <!-- /.modal-dialog -->
+                        </div>
+
+                    <!-- MODAL - VIEW INFO -->
+                    <div class="modal fade" id="info-modal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" style="color:#0d6aad;">Info !</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>Please select a vehicle first</p>
+                          </div>
+                          <div class="modal-footer">
+
+                          </div>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
 
                     </section>
                     <!-- /.content -->
@@ -170,6 +207,7 @@ class Officer extends AutoLoader
             $table_body .= '<tr id ="'.$item["id"].'" >
                           <td>'.$item['officer_id'].'</td>
                           <td>'.$item['f_name'].'</td>
+                          <td>'.$item['l_name'].'</td>
                           <td>'.$item['address'].'</td>
                           <td>'.$item['contact_no'].'</td>
                           <td>'.$item['gender'].'</td>

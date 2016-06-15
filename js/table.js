@@ -19,22 +19,30 @@ $(document).ready(function() {
      */
     $('#example1 tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selectedd') ) {
-            var btn = $(".selectedd")[0].getElementsByTagName("button");
-            btn[0].className="btn btn-sm btn-default disabled";;
+            if(path.indexOf("Officer")<0){
+                var btn = $(".selectedd")[0].getElementsByTagName("button");
+                btn[0].className = "btn btn-sm btn-default disabled";
+            }
+
             $('.disabled').attr('onclick',null);
             $(this).removeClass('selectedd');
         }
         else {
-            if($(".view-stat")[0]){
-                var b = $(".view-stat")[0];
-                b.className = "btn btn-sm btn-default disabled";
-                $('.disabled').attr('onclick',null);
-
+            if(path.indexOf("Officer")<0){
+                if($(".view-stat")[0]){
+                    var b = $(".view-stat")[0];
+                    b.className = "btn btn-sm btn-default disabled";
+                    $('.disabled').attr('onclick',null);
+                }
             }
+
             table.$('tr.selectedd').removeClass('selectedd');
             $(this).addClass('selectedd');
-            var btn = $(".selectedd")[0].getElementsByTagName("button");
-            btn[0].className="btn btn-sm btn-success view-stat";
+            if(path.indexOf("Officer")<0){
+                var btn = $(".selectedd")[0].getElementsByTagName("button");
+                btn[0].className="btn btn-sm btn-success view-stat";
+            }
+
             if(path.indexOf("vehicle")>-1){
                 $('.view-stat').attr('onclick','viewStat(\'vehicle\')');
             }
@@ -153,5 +161,38 @@ function viewStat(caller){
     }
     else if(caller == 'driver'){
         alert("you are from driver");
+    }
+}
+
+function editOfficer(){
+    var e_btn = document.getElementById("edit-officer");
+    var selected_row = document.getElementsByClassName('selectedd');
+
+    if( selected_row.item('tr') != null){
+        var td_elements = selected_row[0].getElementsByTagName("td");
+
+        var id = selected_row.item('tr').id;
+
+        var officer_id = td_elements[0].innerHTML;
+        var f_name =  td_elements[1].innerHTML;
+        var l_name =  td_elements[2].innerHTML;
+        var address =  td_elements[3].innerHTML;
+        var contact_no =  td_elements[4].innerHTML;
+        var gender =  td_elements[5].innerHTML;
+        var nic = td_elements[6].innerHTML;
+
+        document.getElementById('e_o_fname').value = f_name;
+        document.getElementById('e_o_lname').value = l_name;
+        document.getElementById('e_o_address').value = address;
+        document.getElementById('e_o_contact_no').value = contact_no;
+        document.getElementById('e_o_gender').value = gender;
+        document.getElementById('o_id').value = id;
+        document.getElementById('e_o_nic').value = nic;
+        document.getElementById('e_o_officer_id').value = officer_id;
+
+        e_btn.setAttribute("data-target","#edit-officer-modal");
+
+    }else{
+        e_btn.setAttribute("data-target","#info-modal");
     }
 }

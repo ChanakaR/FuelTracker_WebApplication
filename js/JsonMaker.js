@@ -115,6 +115,28 @@ function createVehicleDeleteJson(){
     window.location.href ="../view/vehicle.php?vehicle-delete-json="+json_string;
 }
 
+function createOfficerEditJson(){
+    var f_name = document.getElementById("e_o_fname").value;
+    var l_name = document.getElementById("e_o_lname").value;
+    var address = document.getElementById("e_o_address").value;
+    var contact_no = document.getElementById("e_o_contact_no").value;
+    var gender = document.getElementById("e_o_gender").value;
+    var nic = document.getElementById("e_o_nic").value;
+    var driver_id = document.getElementById("e_o_officer_id").value;
+    var id = document.getElementById("o_id").value;
+
+    var json_string ='{ "id":"'+id+'",'+
+        '"f_name":"'+f_name+'",'+
+        '"l_name":"'+l_name+'",'+
+        '"address":"'+address+'",'+
+        '"contact_no":"'+contact_no+'",'+
+        '"gender":"'+gender+'",'+
+        '"officer_id":"'+driver_id+'",'+
+        '"nic":"'+nic+'"}';
+
+    window.location.href ="../view/officer.php?officer-edit-json="+json_string;
+}
+
 function createOfficerJson(){
 
     var path = window.location.pathname;
@@ -125,7 +147,7 @@ function createOfficerJson(){
     var contact_no = document.getElementsByName("o_contact_no")[0].value;
     var gender = document.getElementsByName("o_gender")[0].value;
     var nic = document.getElementsByName("o_nic")[0].value;
-    var driver_id = document.getElementsByName("o_officer_id")[0].value;
+    var officer_id = document.getElementsByName("o_officer_id")[0].value;
 
     var json_string ='{ "first_name":"'+f_name+'",'+
         '"last_name":"'+l_name+'",'+
@@ -133,7 +155,7 @@ function createOfficerJson(){
         '"contact_no":"'+contact_no+'",'+
         '"gender":"'+gender+'",'+
         '"nic":"'+nic+'",'+
-        '"officer_id":"'+driver_id+'"}';
+        '"officer_id":"'+officer_id+'"}';
 
     if(path.indexOf("home")>-1){
         window.location.href ="../view/home.php?officer-json="+json_string;
