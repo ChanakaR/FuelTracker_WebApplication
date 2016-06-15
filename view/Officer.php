@@ -156,7 +156,7 @@ class Officer extends AutoLoader
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="createOfficerEditJson();">Save changes</button>
+                                <button type="button" class="btn btn-primary" onclick="createVehicleEditJsonVehicle();">Save changes</button>
                               </div>
                             </div>
                             <!-- /.modal-content -->
