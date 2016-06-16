@@ -72,10 +72,6 @@ function createVehicleJson(){
 }
 
 function createVehicleEditJsonVehicle(){
-
-    var path = window.location.pathname;
-
-    if(path.indexOf("vehicle")>-1){
         var v_class = document.getElementById('e_v_class').value;
         var make = document.getElementById('e_v_make').value;
         var model = document.getElementById('e_v_model').value;
@@ -92,30 +88,6 @@ function createVehicleEditJsonVehicle(){
             '"lplate":"'+lplate+'",'+
             '"ftype":"'+ftype+'"}';
         window.location.href ="../view/vehicle.php?vehicle-edit-json="+json_string;
-    }
-    else if(path.indexOf("Officer")>-1){
-        alert("fuck");
-        var f_name = document.getElementById("e_o_fname").value;
-        var l_name = document.getElementById("e_o_lname").value;
-        var address = document.getElementById("e_o_address").value;
-        var contact_no = document.getElementById("e_o_contact_no").value;
-        var gender = document.getElementById("e_o_gender").value;
-        var nic = document.getElementById("e_o_nic").value;
-        var driver_id = document.getElementById("e_o_officer_id").value;
-        var id = document.getElementById("o_id").value;
-
-        var json_string ='{ "id":"'+id+'",'+
-            '"f_name":"'+f_name+'",'+
-            '"l_name":"'+l_name+'",'+
-            '"address":"'+address+'",'+
-            '"contact_no":"'+contact_no+'",'+
-            '"gender":"'+gender+'",'+
-            '"officer_id":"'+driver_id+'",'+
-            '"nic":"'+nic+'"}';
-
-        window.location.href ="../view/officer.php?officer-edit-json="+json_string;
-    }
-
 }
 
 function createVehicleDeleteJson(){
@@ -124,26 +96,32 @@ function createVehicleDeleteJson(){
     window.location.href ="../view/vehicle.php?vehicle-delete-json="+json_string;
 }
 
-window.createOfficerEditJson =function (){
+function createOfficerEditJson(){
     var f_name = document.getElementById("e_o_fname").value;
     var l_name = document.getElementById("e_o_lname").value;
     var address = document.getElementById("e_o_address").value;
     var contact_no = document.getElementById("e_o_contact_no").value;
     var gender = document.getElementById("e_o_gender").value;
     var nic = document.getElementById("e_o_nic").value;
-    var driver_id = document.getElementById("e_o_officer_id").value;
+    var officer_id = document.getElementById("e_o_officer_id").value;
     var id = document.getElementById("o_id").value;
 
     var json_string ='{ "id":"'+id+'",'+
-        '"f_name":"'+f_name+'",'+
-        '"l_name":"'+l_name+'",'+
+        '"first_name":"'+f_name+'",'+
+        '"last_name":"'+l_name+'",'+
         '"address":"'+address+'",'+
         '"contact_no":"'+contact_no+'",'+
         '"gender":"'+gender+'",'+
-        '"officer_id":"'+driver_id+'",'+
+        '"officer_id":"'+officer_id+'",'+
         '"nic":"'+nic+'"}';
 
     window.location.href ="../view/officer.php?officer-edit-json="+json_string;
+}
+
+function createOfficerDeleteJson(){
+    var id = document.getElementById("r_o_id").value;
+    var json_string = '{"id":"'+id+'"}';
+    window.location.href ="../view/officer.php?officer-delete-json="+json_string;
 }
 
 function createOfficerJson(){
@@ -172,4 +150,34 @@ function createOfficerJson(){
     else if(path.indexOf("officer")>-1){
         window.location.href ="../view/officer.php?officer-json="+json_string
     }
+}
+
+function createDriverDeleteJson(){
+    var id = document.getElementById("r_d_id").value;
+    var json_string = '{"id":"'+id+'"}';
+    window.location.href ="../view/driver.php?driver-delete-json="+json_string;
+}
+
+function createDriverEditJson(){
+    var f_name = document.getElementById("e_d_fname").value;
+    var l_name = document.getElementById("e_d_lname").value;
+    var address = document.getElementById("e_d_address").value;
+    var contact_no = document.getElementById("e_d_contact_no").value;
+    var gender = document.getElementById("e_d_gender").value;
+    var nic = document.getElementById("e_d_nic").value;
+    var driver_id = document.getElementById("e_d_driver_id").value;
+    var licence_no = document.getElementById("e_d_licence_no").value;
+    var id = document.getElementById("e_d_id").value;
+
+    var json_string ='{ "id":"'+id+'",'+
+        '"first_name":"'+f_name+'",'+
+        '"last_name":"'+l_name+'",'+
+        '"address":"'+address+'",'+
+        '"contact_no":"'+contact_no+'",'+
+        '"gender":"'+gender+'",'+
+        '"driver_id":"'+driver_id+'",'+
+        '"licence_no":"'+licence_no+'",'+
+        '"nic":"'+nic+'"}';
+
+    window.location.href ="../view/driver.php?driver-edit-json="+json_string;
 }

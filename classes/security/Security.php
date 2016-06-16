@@ -9,31 +9,46 @@
 class Security
 {
 
-    public function check_user_validation(){
-
+    function __construct()
+    {
+        $this->start_session();
     }
 
-    public function start_session($session_name,$user){
+    private function start_session(){
+        session_start();
+    }
 
+    public function set_session_variables($username,$role,$name,$officer_id){
+        $_SESSION["username"] = $username;
+        $_SESSION["role"] = $role;
+        $_SESSION["name"] = $name;
+        $_SESSION["officer_id"] = $officer_id;
     }
 
     public function stop_session(){
-
-    }
-
-    public function is_session(){
-
+        session_unset();
+        session_destroy();
     }
 
     public function get_user_role(){
-
-    }
-
-    public function get_user_password(){
-
+        return $_SESSION["role"];
     }
 
     public function get_user_username(){
+        return $_SESSION["username"];
+    }
 
+    public function is_session(){
+        if(isset($_SESSION)){
+            if(isset($_SESSION["username"]) and isset($_SESSION["role"])){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
     }
 }

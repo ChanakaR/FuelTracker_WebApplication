@@ -9,13 +9,28 @@
 
 require_once ("../classes/view/AutoLoader.php");
 require_once ("../classes/data_access/DataAccess.php");
+require_once ("../classes/security/Security.php");
 
 class StatViewer extends AutoLoader
 {
     private $vehicle_id;
     function __construct($vehcle_id)
     {
+        $this->check_for_logged_users();
         $this->vehicle_id = $vehcle_id;
+    }
+
+    private function check_for_logged_users(){
+        $sec= new Security();
+        if($sec->is_session()){
+            $this->username = $_SESSION["username"];
+            $this->role = $_SESSION["role"];
+            $this->officer_id = $_SESSION["officer_id"];
+            $this->name = $_SESSION["name"];
+        }
+        else{
+            header("Location:./login.php");
+        }
     }
 
     public function load_body(){

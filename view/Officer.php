@@ -10,25 +10,67 @@
 
 require_once ("../classes/view/AutoLoader.php");
 require_once ("../classes/data_access/DataAccess.php");
+require_once ("../classes/security/Security.php");
 
 class Officer extends AutoLoader
 {
     function __construct()
     {
+        $this->check_for_logged_users();
         $this->check_for_responses();
     }
 
+    private function check_for_logged_users(){
+        $sec= new Security();
+        if($sec->is_session()){
+            $this->username = $_SESSION["username"];
+            $this->role = $_SESSION["role"];
+            $this->officer_id = $_SESSION["officer_id"];
+            $this->name = $_SESSION["name"];
+
+            if($this->role != "ADM"){
+                header("Location:./home.php");
+            }
+        }
+        else{
+            header("Location:./login.php");
+        }
+    }
+
+
     private function check_for_responses(){
-        if(isset($_GET["vehicle-json"])){
-            $json_data = $_GET["vehicle-json"];
+        if(isset($_GET["officer-json"])){
+            $json_data = $_GET["officer-json"];
             $json_send ='{
                     "method" : "INSERT",
-                    "class" : "VEHICLE",
+                    "class" : "OFFICER",
                     "data" : '.$json_data.'
                 }';
 
             $da = new DataAccess();
             $da->insertData($json_send);
+        }
+        elseif(isset($_GET["officer-edit-json"])){
+            $json_data = $_GET["officer-edit-json"];
+            $json_send ='{
+                "method" : "UPDATE",
+                "class" : "OFFICER",
+                "data" : '.$json_data.'
+            }';
+
+            $da = new DataAccess();
+            $da->updateData($json_send);
+        }
+        elseif(isset($_GET["officer-delete-json"])){
+            $json_data = $_GET["officer-delete-json"];
+            $json_send ='{
+                "method" : "DELETE",
+                "class" : "OFFICER",
+                "data" : '.$json_data.'
+            }';
+
+            $da = new DataAccess();
+            $da->deleteData($json_send);
         }
     }
 
@@ -51,7 +93,7 @@ class Officer extends AutoLoader
                       <div class="option-bar" style="margin: 10px;float: right;">
                         <button class="btn btn-success" data-toggle="modal" data-target="#add-officer"><icon class="fa fa-plus-square-o"></icon> Add</button>
                         <button class="btn btn-primary" id="edit-officer" data-toggle="modal" onclick="editOfficer()"><icon class="fa fa-edit"></icon> Edit</button>
-                        <button class="btn btn-danger" id="remove-officer" data-toggle="modal" onclick=""><icon class="fa fa-minus-square-o"></icon> Remove</button>
+                        <button class="btn btn-danger" id="remove-officer" data-toggle="modal" onclick="removeOfficer()"><icon class="fa fa-minus-square-o"></icon> Remove</button>
                       </div>
                       </div>
                       <div class="row">
@@ -139,7 +181,7 @@ class Officer extends AutoLoader
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">Edit Vehicle</h4>
+                                <h4 class="modal-title">Edit Officer</h4>
                               </div>
                               <div class="modal-body">
                                 <input class="form-control" type="text" placeholder="First Name" id="e_o_fname"><br>
@@ -156,7 +198,7 @@ class Officer extends AutoLoader
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="createVehicleEditJsonVehicle();">Save changes</button>
+                                <button type="button" class="btn btn-primary" onclick="createOfficerEditJson();">Save changes</button>
                               </div>
                             </div>
                             <!-- /.modal-content -->
@@ -174,7 +216,7 @@ class Officer extends AutoLoader
                             <h4 class="modal-title" style="color:#0d6aad;">Info !</h4>
                           </div>
                           <div class="modal-body">
-                            <p>Please select a vehicle first</p>
+                            <p>Please select a officer first</p>
                           </div>
                           <div class="modal-footer">
 
@@ -184,6 +226,29 @@ class Officer extends AutoLoader
                       </div>
                       <!-- /.modal-dialog -->
                     </div>
+
+                    <div class="modal fade" id="rmv-officer">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" style="color: orangered">Remove Officer !</h4>
+                              </div>
+                              <div class="modal-body">
+                                <input type="hidden" id="r_o_id">
+                                <h3>Are you sure ?</h3>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-danger" onclick="createOfficerDeleteJson()">Yes</button>
+                              </div>
+                            </div>
+                            <!-- /.modal-content -->
+                          </div>
+                          <!-- /.modal-dialog -->
+
+                        </div>
 
                     </section>
                     <!-- /.content -->

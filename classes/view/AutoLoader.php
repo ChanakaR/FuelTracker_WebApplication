@@ -8,8 +8,14 @@
  *
  * AutoLoader - class will load auto headers and footers, including js,css,font files
  */
+
 class AutoLoader
 {
+    protected $username;
+    protected $role;
+    protected $name;
+    protected $officer_id;
+
     public function load_header(){
         echo '<html>
             <head>
@@ -97,7 +103,7 @@ class AutoLoader
                           <!-- The user image in the navbar-->
                           <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                           <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                          <span class="hidden-xs">Chanaka Rathnayaka</span>
+                          <span class="hidden-xs">'.$this->name.'</span>
                         </a>
                         <ul class="dropdown-menu">
                           <!-- The user image in the menu -->
@@ -105,24 +111,9 @@ class AutoLoader
                             <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                              Chanaka Rathnayaka - Web Developer
-                              <small>bmCSoft - 2016</small>
+                              '.$this->name.' - '.$this->role.'
+                              <small>'.$this->officer_id.'</small>
                             </p>
-                          </li>
-                          <!-- Menu Body -->
-                          <li class="user-body">
-                            <div class="row">
-                              <div class="col-xs-4 text-center">
-                                <a href="#">Followers</a>
-                              </div>
-                              <div class="col-xs-4 text-center">
-                                <a href="#">Sales</a>
-                              </div>
-                              <div class="col-xs-4 text-center">
-                                <a href="#">Friends</a>
-                              </div>
-                            </div>
-                            <!-- /.row -->
                           </li>
                           <!-- Menu Footer-->
                           <li class="user-footer">
@@ -130,7 +121,7 @@ class AutoLoader
                               <a href="../controller/controller.php?path=profile" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                              <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                              <a href="../view/login.php?m=so" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                           </li>
                         </ul>
@@ -152,7 +143,7 @@ class AutoLoader
                           <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                          <p>Chanaka Rathnayaka</p>
+                          <p>'.$this->name.'</p>
                           <!-- Status -->
                           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -168,51 +159,67 @@ class AutoLoader
                                 $list ='<li class="active"><a href="../controller/controller.php?path=home"><i class="fa fa-bank"></i> <span>Home</span></a></li>
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
-                                        <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
+                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>';
+                                if($this->role == "ADM"){
+                                    $list .= '<li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>';
+                                }
+                                $list .='<li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
                             case 'vehicle':
                                 $list ='<li ><a href="../controller/controller.php?path=home"><i class="fa fa-bank"></i> <span>Home</span></a></li>
                                         <li class="active"><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
-                                        <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
+                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>';
+                                if($this->role == "ADM"){
+                                    $list .= '<li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>';
+                                }
+                                    $list .='<li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
                             case 'driver':
                                 $list ='<li ><a href="../controller/controller.php?path=home"><i class="fa fa-bank"></i> <span>Home</span></a></li>
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li class="active"><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
-                                        <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
+                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>';
+                                if($this->role == "ADM"){
+                                    $list .= '<li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>';
+                                }
+                                $list .='<li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
                             case 'officer':
                                 $list ='<li ><a href="../controller/controller.php?path=home"><i class="fa fa-bank"></i> <span>Home</span></a></li>
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li class="active"><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
-                                        <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
+                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>';
+
+                                if($this->role == "ADM"){
+                                    $list .= '<li class="active"><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>';
+                                }
+                                $list .='<li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
 
                             case 'profile':
                                 $list ='<li ><a href="../controller/controller.php?path=home"><i class="fa fa-bank"></i> <span>Home</span></a></li>
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
-                                        <li class = "active"><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
+                                        <li><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>';
+
+                                if($this->role == "ADM"){
+                                    $list .= '<li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>';
+                                }
+                                $list .='<li class="active"><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
                                 break;
 
                             case 'trip':
                                 $list ='<li ><a href="../controller/controller.php?path=home"><i class="fa fa-bank"></i> <span>Home</span></a></li>
                                         <li><a href="../controller/controller.php?path=vehicle"><i class="fa fa-cab"></i> <span>Vehicles</span></a></li>
                                         <li><a href="../controller/controller.php?path=driver"><i class="fa fa-users"></i> <span>Drivers</span></a> </li>
-                                        <li class = "active"><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>
-                                        <li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>
-                                        <li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
+                                        <li class = "active"><a href="../controller/controller.php?path=trip"><i class="fa fa-map-o"></i> <span>Trips</span></a> </li>';
+
+                                if($this->role == "ADM"){
+                                    $list .= '<li><a href="../controller/controller.php?path=officer"><i class="fa fa-line-chart"></i><span>Officers</span></a></li>';
+                                }
+                                $list .='<li><a href="../controller/controller.php?path=profile"><i class="fa fa-cogs"></i> <span>Profile Settings</span></a> </li>';
+
                                 break;
                         }
 

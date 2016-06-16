@@ -8,6 +8,7 @@
 
 require_once ("../classes/view/AutoLoader.php");
 require_once ("../classes/data_access/DataAccess.php");
+require_once ("../classes/security/Security.php");
 
 global $response_code;
 global $message;
@@ -20,8 +21,23 @@ class Home extends AutoLoader{
 
     function __construct()
     {
+        $this->check_for_logged_users();
         $this->check_for_responses();
     }
+
+    private function check_for_logged_users(){
+        $sec= new Security();
+        if($sec->is_session()){
+            $this->username = $_SESSION["username"];
+            $this->role = $_SESSION["role"];
+            $this->officer_id = $_SESSION["officer_id"];
+            $this->name = $_SESSION["name"];
+        }
+        else{
+            header("Location:./login.php");
+        }
+    }
+
 
     private function check_for_responses(){
         if(isset($_GET["driver-json"])){
@@ -182,9 +198,10 @@ class Home extends AutoLoader{
                   <!-- /.box -->
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-6">';
 
-                    <div class="small-box bg-teal-active">
+        if($this->role=="ADM"){
+            $content .= '<div class="small-box bg-teal-active">
                         <div class="inner">
                           <h4>Add officer</h4>
                         </div>
@@ -192,9 +209,11 @@ class Home extends AutoLoader{
                           <i class="ion ion-eye"></i>
                         </div>
                         <a href="#" class="small-box-footer" data-toggle="modal" data-target="#add-officer">View <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+                    </div>';
+        }
 
-                    <div class="small-box bg-green-active">
+
+        $content .= '<div class="small-box bg-green-active">
                     <div class="inner">
                       <h4>Available vehicles</h4>
                     </div>

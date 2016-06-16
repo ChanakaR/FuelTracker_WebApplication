@@ -112,6 +112,42 @@ function removeVehicle(){
     }
 }
 
+function removeOfficer(){
+    var r_btn = document.getElementById("remove-officer");
+    var selected_row = document.getElementsByClassName('selectedd');
+
+    if( selected_row.item('tr') != null){
+        var selected_row = document.getElementsByClassName("selectedd");
+        var td_elements = selected_row[0].getElementsByTagName("td");
+
+        var id = selected_row.item('tr').id;
+
+        document.getElementById("r_o_id").value = id;
+        r_btn.setAttribute("data-target","#rmv-officer");
+
+    }else{
+        r_btn.setAttribute("data-target","#info-modal");
+    }
+}
+
+function removeDriver(){
+    var r_btn = document.getElementById("remove-driver");
+    var selected_row = document.getElementsByClassName('selectedd');
+
+    if( selected_row.item('tr') != null){
+        var selected_row = document.getElementsByClassName("selectedd");
+        var td_elements = selected_row[0].getElementsByTagName("td");
+
+        var id = selected_row.item('tr').id;
+
+        document.getElementById("r_d_id").value = id;
+        r_btn.setAttribute("data-target","#rmv-driver");
+
+    }else{
+        r_btn.setAttribute("data-target","#info-modal");
+    }
+}
+
 function viewStat(caller){
 
     var json_string="";
@@ -160,7 +196,7 @@ function viewStat(caller){
 
     }
     else if(caller == 'driver'){
-        alert("you are from driver");
+
     }
 }
 
@@ -191,6 +227,41 @@ function editOfficer(){
         document.getElementById('e_o_officer_id').value = officer_id;
 
         e_btn.setAttribute("data-target","#edit-officer-modal");
+
+    }else{
+        e_btn.setAttribute("data-target","#info-modal");
+    }
+}
+
+function editDriver(){
+    var e_btn = document.getElementById("edit-driver");
+    var selected_row = document.getElementsByClassName('selectedd');
+
+    if( selected_row.item('tr') != null){
+        var td_elements = selected_row[0].getElementsByTagName("td");
+
+        var id = selected_row.item('tr').id;
+
+        var driver_id = td_elements[0].innerHTML;
+        var f_name =  td_elements[1].innerHTML;
+        var l_name =  td_elements[2].innerHTML;
+        var address =  td_elements[3].innerHTML;
+        var contact_no =  td_elements[4].innerHTML;
+        var gender =  td_elements[5].innerHTML;
+        var nic = td_elements[6].innerHTML;
+        var licence_no = td_elements[7].innerHTML;
+
+        document.getElementById('e_d_fname').value = f_name;
+        document.getElementById('e_d_lname').value = l_name;
+        document.getElementById('e_d_address').value = address;
+        document.getElementById('e_d_contact_no').value = contact_no;
+        document.getElementById('e_d_gender').value = gender;
+        document.getElementById('e_d_id').value = id;
+        document.getElementById('e_d_nic').value = nic;
+        document.getElementById('e_d_driver_id').value = driver_id;
+        document.getElementById('e_d_licence_no').value = licence_no;
+
+        e_btn.setAttribute("data-target","#edit-driver-modal");
 
     }else{
         e_btn.setAttribute("data-target","#info-modal");

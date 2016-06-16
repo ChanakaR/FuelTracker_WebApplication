@@ -80,7 +80,7 @@ function getTableBody(){
     $json_send = '{
                 "method" : "SELECT",
                 "class" : "DRIVER",
-                "select" : "ALL",
+                "select" : "N_ALL",
                 "data" : "AVA_DRIVER"
               }';
     $dataAccess = new DataAccess();

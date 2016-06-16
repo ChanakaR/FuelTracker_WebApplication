@@ -59,7 +59,7 @@ class DataAccess
         $this->generateRequest($json,"PUT");
         $response = curl_exec($this->curl);
         curl_close($this->curl);
-        echo $response;
+        //echo $response;
     }
 
     /*
@@ -69,7 +69,14 @@ class DataAccess
         $this->generateRequest($json,"DELETE");
         $response = curl_exec($this->curl);
         curl_close($this->curl);
-        echo $response;
+        //echo $response;
+    }
+
+    public function userValidation($json){
+        $this->generateRequest($json,"POST");
+        $response = curl_exec($this->curl);
+        curl_close($this->curl);
+        return $response;
     }
 
     private function generateRequest($json,$method){
